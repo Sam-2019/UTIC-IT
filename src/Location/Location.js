@@ -12,6 +12,9 @@ const Location = (props) => {
 
   const toggle = () => setModal(!modal);
 
+  const sortedLocationList = LocationList.sort((a, d) => d.name - a.name);
+  console.log(sortedLocationList);
+
   return (
     <>
       <div className="page_header">
@@ -21,7 +24,7 @@ const Location = (props) => {
         </Button>
       </div>
 
-      {LocationList.map((item, index) => (
+      {LocationList.sort().map((item, index) => (
         <LocationItem key={index} {...item} />
       ))}
 

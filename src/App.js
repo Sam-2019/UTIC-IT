@@ -4,14 +4,15 @@ import {
   Switch,
   Route,
   Link,
-  useRouteMatch
+  useRouteMatch,
+  useHistory
 } from "react-router-dom";
 import Home from "./Home/Home";
 import Category from "./Category/Category";
 import Location from "./Location/Location";
 import LocationInfo from "./Location/locationInfo";
 import CategoryInfo from "./Category/categoryInfo";
-import { Container, Button, Navbar, NavbarBrand, NavbarText } from "reactstrap";
+import { Container } from "reactstrap";
 import "./app.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
