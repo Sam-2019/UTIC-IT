@@ -14,6 +14,13 @@ const Location = (props) => {
 
   return (
     <>
+      <div className="page_header">
+        <h2>Locations</h2>
+        <Button color="success" onClick={toggle}>
+          Add
+        </Button>
+      </div>
+
       {LocationList.map((item, index) => (
         <LocationItem key={index} {...item} />
       ))}
@@ -21,10 +28,6 @@ const Location = (props) => {
       <ModalItem toggle={toggle} currentState={modal} className={className}>
         <Form />
       </ModalItem>
-
-      <Button color="success" onClick={toggle}>
-        Add
-      </Button>
     </>
   );
 };

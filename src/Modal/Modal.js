@@ -8,9 +8,6 @@ const ModalItem = ({ className, currentState, toggle, children }) => {
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>{children}</ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Do Something
-          </Button>{" "}
           <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>

@@ -11,41 +11,36 @@ import Category from "./Category/Category";
 import Location from "./Location/Location";
 import LocationInfo from "./Location/locationInfo";
 import CategoryInfo from "./Category/categoryInfo";
+import { Container, Button, Navbar, NavbarBrand, NavbarText } from "reactstrap";
+import "./app.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/location">Location</Link>
-            </li>
-            <li>
-              <Link to="/category">Category</Link>
-            </li>
-          </ul>
-        </nav>
+      <Container>
+        <div style={{ border: "1px solid red" }}>
+          <Switch>
+            <Route path="/location">
+              <LocationPage />
+            </Route>
 
-        <Switch>
-          <Route path="/location">
-            <LocationPage />
-          </Route>
+            <Route path="/category">
+              <CategoryPage />
+            </Route>
 
-          <Route path="/category">
-            <CategoryPage />
-          </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
 
-          <Route exact path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+          <nav className="page_footer">
+            <Link to="/category">Categories</Link>{" "}
+            <Link to="/location">Locations</Link>
+          </nav>
+        </div>
+      </Container>
     </Router>
   );
 }
@@ -55,8 +50,6 @@ function LocationPage() {
 
   return (
     <div>
-      <h2>Locations</h2>
-
       <Switch>
         <Route path={`${match.path}/:id`}>
           <LocationInfo />
@@ -74,8 +67,6 @@ function CategoryPage() {
   let match = useRouteMatch();
   return (
     <div>
-      <h2>Categories</h2>
-
       <Switch>
         <Route path={`${match.path}/:id`}>
           <CategoryInfo />
