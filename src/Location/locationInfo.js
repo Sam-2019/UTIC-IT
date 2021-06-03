@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
-import ModalItem from "../Modal/Modal";
+
 import EditForm from "./EditForm";
-import { ModalHeader, ModalBody } from "reactstrap";
-import { UilCopy } from "@iconscout/react-unicons";
+
+import PopUp from "../Modal/Modal";
 
 import { useSelector, useDispatch } from "react-redux";
-import { locationData, remove } from "../features/locationSlice";
+import { locationData, remove } from "../redux_utils/locationSlice";
 
-const LocationInfo = (props) => {
+const LocationInfo = () => {
   let { id } = useParams();
-  const { className } = props;
 
   const [modal, setModal] = useState(false);
 
   const LocationList = useSelector(locationData);
   const FilteredList = LocationList.filter((result) => result.name === id);
-  const dispatch = useDispatch();
 
-  const toggle = () => setModal(!modal);
+  var splitCoordinates = FilteredList[0].coordinates;
+  var newCoordinates = splitCoordinates.split(",");
+
+  const Latitude = Number(newCoordinates[0]);
+  const Longitude = Number(newCoordinates[1]);
+
+  const dispatch = useDispatch();
 
   let viewData;
 
@@ -33,7 +37,13 @@ const LocationInfo = (props) => {
         <div key={FilteredList[0].id}>
           <p>{FilteredList[0].address}</p>
 
-          <p>{FilteredList[0].coordinates}</p>
+          <div className="page_header">
+            <p>{FilteredList[0].coordinates} </p>
+
+            <a href={` https://maps.google.com/?q=${Latitude}, ${Longitude}  `}>
+              View on Google Maps{" "}
+            </a>
+          </div>
 
           <p>{FilteredList[0].category}</p>
         </div>
@@ -47,10 +57,13 @@ const LocationInfo = (props) => {
         <p>{id}</p>
 
         <div className="page_header_action">
-          <Button color="secondary" onClick={toggle}>
+          <Button color="secondary" onClick={() => setModal(true)}>
             Edit
           </Button>{" "}
-          <Button color="danger" onClick={() => dispatch(remove(id))}>
+          <Button
+            color="danger"
+            onClick={() => dispatch(remove(FilteredList[0].id))}
+          >
             Remove
           </Button>
         </div>
@@ -58,12 +71,16 @@ const LocationInfo = (props) => {
 
       {viewData}
 
-      <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <ModalHeader>Edit Location</ModalHeader>
-        <ModalBody>
-          <EditForm closeModal={toggle} />
-        </ModalBody>
-      </ModalItem>
+      {modal ? (
+        <PopUp>
+          <EditForm
+            close={() => {
+              setModal(false);
+            }}
+            locationID={FilteredList[0].id}
+          />
+        </PopUp>
+      ) : null}
     </>
   );
 };

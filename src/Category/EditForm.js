@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Input } from "../components/input";
 
 import { useSelector, useDispatch } from "react-redux";
-import { categoryData, edit } from "../features/categorySlice";
+import { categoryData, edit } from "../redux_utils/categorySlice";
 
-function CategoryEditForm({ closeModal }) {
+function CategoryEditForm({ close }) {
   const [name, setName] = useState("");
 
   const CategoryList = useSelector(categoryData);
@@ -12,7 +12,7 @@ function CategoryEditForm({ closeModal }) {
 
   const updateCategory = () => {
     const data = {
-      name
+      name,
     };
 
     dispatch(edit(data));
@@ -29,7 +29,7 @@ function CategoryEditForm({ closeModal }) {
       />
 
       <button onClick={updateCategory()}>Submit</button>
-      <button onClick={closeModal}> Cancel</button>
+      <button onClick={close}> Cancel</button>
     </form>
   );
 }

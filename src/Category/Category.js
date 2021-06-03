@@ -5,12 +5,28 @@ import PopUp from "../Modal/Modal";
 import Form from "./Form";
 
 import { useSelector } from "react-redux";
-import { categoryData } from "../features/categorySlice";
+import { categoryData } from "../redux_utils/categorySlice";
 
 const Category = () => {
   const [modal, setModal] = useState(false);
 
   const CategoryList = useSelector(categoryData);
+
+  let viewData;
+
+  if (CategoryList.length === 0) {
+    viewData = <> No data yet</>;
+  }
+
+  if (CategoryList.length > 0) {
+    viewData = (
+      <>
+        {CategoryList.map((item, index) => (
+          <CategoryItem key={index} {...item} />
+        ))}
+      </>
+    );
+  }
 
   return (
     <>
@@ -22,10 +38,8 @@ const Category = () => {
         </Button>
       </div>
 
-      {CategoryList.map((item, index) => (
-        <CategoryItem key={index} {...item} />
-      ))}
-
+      {viewData}
+      
       {modal ? (
         <PopUp>
           <Form
@@ -33,7 +47,6 @@ const Category = () => {
               setModal(false);
             }}
           />
-          ]
         </PopUp>
       ) : null}
     </>

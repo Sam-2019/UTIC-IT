@@ -1,56 +1,75 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
+import { v1 as uuid } from 'uuid';
+import { Input } from "../components/input";
 
 import { useSelector, useDispatch } from "react-redux";
-import { add } from "../features/locationSlice";
-import { categoryData } from "../features/categorySlice";
+import { add } from "../redux_utils/locationSlice";
+import { categoryData } from "../redux_utils/categorySlice";
 
 export default function LocationForm({ close }) {
   const CategoryData = useSelector(categoryData);
   const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm();
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [coordinates, setCoordinate] = useState("");
+  const [category, setCategory] = useState(CategoryData[0].name);
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
+    const data = {
+      id: uuid(),
+      name,
+      address,
+      coordinates,
+      category,
+    };
+
     dispatch(add(data));
     close();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("name", { required: true })} className="w-100 mb-2" />
-      {errors.name && <span>This field is required</span>}
-
-      <input
-        {...register("address", { required: true })}
-        className="w-100  mb-2"
+    <form>
+      <Input
+        class_name="w-100 mb-3"
+        placeholder="name"
+        type="text"
+        action={(e) => setName(e.target.value)}
+        value={name}
       />
-      {errors.address && <span>This field is required</span>}
 
-      <input
-        {...register("coordinates", { required: true })}
-        className="w-100  mb-2"
+      <Input
+        class_name="w-100 mb-3"
+        placeholder="address"
+        type="text"
+        action={(e) => setAddress(e.target.value)}
+        value={address}
       />
-      {errors.coordinates && <span>This field is required</span>}
 
-      <select {...register("category")} className="w-100  mb-2">
-        {CategoryData.map((item, index) => (
-          <option key={index} value={item.name}>
-            {item.name}
+      <Input
+        class_name="w-100 mb-3"
+        placeholder="coordinates"
+        type="text"
+        action={(e) => setCoordinate(e.target.value)}
+        value={coordinates}
+      />
+
+      <select
+        className="w-100  mb-2"
+        value={category}
+        onChange={(e) => {
+          setCategory(e.target.value);
+        }}
+      >
+        {CategoryData.map(({ name }) => (
+          <option key={name} value={name}>
+            {name}
           </option>
         ))}
       </select>
-      {errors.category && <span>This field is required</span>}
 
-      <div>
-        <input type="submit" />
-
-        <button onClick={close}> Cancel</button>
-      </div>
+      <button onClick={onSubmit}>Submit</button>
+      <button onClick={close}>Cancel</button>
     </form>
   );
 }

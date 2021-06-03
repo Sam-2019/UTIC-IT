@@ -2,22 +2,20 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
-import ModalItem from "../Modal/Modal";
 import EditForm from "./EditForm";
 import LocationItem from "../Location/locationItem";
 
-import { ModalHeader, ModalBody } from "reactstrap";
+import PopUp from "../Modal/Modal";
 
 import { useSelector, useDispatch } from "react-redux";
-import { locationData, remove } from "../features/locationSlice";
+import { locationData } from "../redux_utils/locationSlice";
+import {  remove } from "../redux_utils/categorySlice";
 
-const CategoryInfo = (props) => {
+const CategoryInfo = () => {
   let { id } = useParams();
 
-  const { className } = props;
-
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+
   const LocationList = useSelector(locationData);
   const FilteredList = LocationList.filter((result) => result.category === id);
   const dispatch = useDispatch();
@@ -46,7 +44,7 @@ const CategoryInfo = (props) => {
         <p>{id}</p>
 
         <div className="page_header_action">
-          <Button color="secondary" onClick={toggle}>
+          <Button color="secondary" onClick={() => setModal(true)}>
             Edit
           </Button>{" "}
           <Button color="danger" onClick={() => dispatch(remove(id))}>
@@ -57,12 +55,15 @@ const CategoryInfo = (props) => {
 
       {viewData}
 
-      <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <ModalHeader>Edit Category</ModalHeader>
-        <ModalBody>
-          <EditForm closeModal={toggle} />
-        </ModalBody>
-      </ModalItem>
+      {modal ? (
+        <PopUp>
+          <EditForm
+            close={() => {
+              setModal(false);
+            }}
+          />
+        </PopUp>
+      ) : null}
     </>
   );
 };

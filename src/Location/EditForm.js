@@ -2,23 +2,27 @@ import React, { useState } from "react";
 import { Input } from "../components/input";
 
 import { useSelector, useDispatch } from "react-redux";
-import { locationData, edit } from "../features/locationSlice";
+import { locationData, edit } from "../redux_utils/locationSlice";
+import { categoryData } from "../redux_utils/categorySlice";
 
-function LocationEditForm({ closeModal }) {
+function LocationEditForm({ close, locationID }) {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [coordinate, setCoordinate] = useState("");
   const [category, setCategory] = useState("");
 
+  const CategoryData = useSelector(categoryData);
   const LocationList = useSelector(locationData);
+  console.log(LocationList);
   const dispatch = useDispatch();
 
   const updateLocation = () => {
     const data = {
+      id: locationID,
       name,
       address,
       coordinate,
-      category
+      category,
     };
     dispatch(edit(data));
   };
@@ -49,16 +53,22 @@ function LocationEditForm({ closeModal }) {
         value={coordinate}
       />
 
-      <Input
-        class_name="w-100 mb-3"
-        placeholder="category"
-        type="text"
-        action={(e) => setCategory(e.target.value)}
+      <select
+        className="w-100  mb-2"
         value={category}
-      />
+        onChange={(e) => {
+          setCategory(e.target.value);
+        }}
+      >
+        {CategoryData.map(({ name }) => (
+          <option key={name} value={name}>
+            {name}
+          </option>
+        ))}
+      </select>
 
       <button onClick={updateLocation()}>Submit</button>
-      <button onClick={closeModal}>Cancel</button>
+      <button onClick={close}>Cancel</button>
     </form>
   );
 }
