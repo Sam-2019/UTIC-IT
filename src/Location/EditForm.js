@@ -11,7 +11,6 @@ function LocationEditForm({ closeModal }) {
   const [category, setCategory] = useState("");
 
   const LocationList = useSelector(locationData);
-  console.log(LocationList);
   const dispatch = useDispatch();
 
   const updateLocation = () => {

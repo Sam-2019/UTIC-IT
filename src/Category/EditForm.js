@@ -8,7 +8,6 @@ function CategoryEditForm({ closeModal }) {
   const [name, setName] = useState("");
 
   const CategoryList = useSelector(categoryData);
-  console.log(CategoryList);
   const dispatch = useDispatch();
 
   const updateCategory = () => {
