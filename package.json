@@ -8,6 +8,7 @@
   ],
   "main": "src/index.js",
   "dependencies": {
+    "@iconscout/react-unicons": "1.1.6",
     "@reduxjs/toolkit": "1.5.1",
     "bootstrap": "5.0.1",
     "react": "17.0.2",

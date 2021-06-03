@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ModalItem from "../Modal/Modal";
 import EditForm from "./EditForm";
 import { ModalHeader, ModalBody } from "reactstrap";
+import { UilCopy } from "@iconscout/react-unicons";
 
 import { useSelector, useDispatch } from "react-redux";
 import { locationData, remove } from "../features/locationSlice";
@@ -31,7 +32,9 @@ const LocationInfo = (props) => {
       <>
         <div key={FilteredList[0].id}>
           <p>{FilteredList[0].address}</p>
+
           <p>{FilteredList[0].coordinates}</p>
+
           <p>{FilteredList[0].category}</p>
         </div>
       </>
