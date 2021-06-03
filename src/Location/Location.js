@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import { ModalHeader, ModalBody, Button } from "reactstrap";
 import LocationItem from "./locationItem";
-import ModalItem from "../Modal/Modal";
+import PopUp from "../Modal/Modal";
 import Form from "./Form";
 
 import { useSelector } from "react-redux";
 import { locationData } from "../features/locationSlice";
 
 const Location = (props) => {
-  const { className } = props;
-
   const [modal, setModal] = useState(false);
-
-  const toggle = () => setModal(!modal);
 
   const LocationList = useSelector(locationData);
 
@@ -20,7 +16,7 @@ const Location = (props) => {
     <>
       <div className="page_header">
         <h2>Locations</h2>
-        <Button color="success" onClick={toggle}>
+        <Button color="success" onClick={() => setModal(false)}>
           Add
         </Button>
       </div>
@@ -29,12 +25,16 @@ const Location = (props) => {
         <LocationItem key={index} {...item} />
       ))}
 
-      <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <ModalHeader>Add Category</ModalHeader>
-        <ModalBody>
-          <Form closeModal={toggle} />
-        </ModalBody>
-      </ModalItem>
+      {modal ? (
+        <PopUp close={() => setModal(false)}>
+          <Form
+            close={() => {
+              setModal(false);
+            }}
+          />
+          ]
+        </PopUp>
+      ) : null}
     </>
   );
 };

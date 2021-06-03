@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import { ModalHeader, ModalBody, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import CategoryItem from "./categoryItem";
-import ModalItem from "../Modal/Modal";
+import PopUp from "../Modal/Modal";
 import Form from "./Form";
 
 import { useSelector } from "react-redux";
 import { categoryData } from "../features/categorySlice";
 
-const Category = ({ className }) => {
+const Category = () => {
   const [modal, setModal] = useState(false);
-
-  const toggle = () => setModal(!modal);
 
   const CategoryList = useSelector(categoryData);
 
@@ -19,7 +17,7 @@ const Category = ({ className }) => {
       <div className="page_header">
         <h2>Categories</h2>
 
-        <Button color="success" onClick={toggle}>
+        <Button color="success" onClick={() => setModal(false)}>
           Add
         </Button>
       </div>
@@ -28,12 +26,16 @@ const Category = ({ className }) => {
         <CategoryItem key={index} {...item} />
       ))}
 
-      <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <ModalHeader>Add Category</ModalHeader>
-        <ModalBody>
-          <Form closeModal={toggle} />
-        </ModalBody>
-      </ModalItem>
+      {modal ? (
+        <PopUp close={() => setModal(false)}>
+          <Form
+            close={() => {
+              setModal(false);
+            }}
+          />
+          ]
+        </PopUp>
+      ) : null}
     </>
   );
 };
