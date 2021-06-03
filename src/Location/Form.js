@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { add } from "../features/locationSlice";
 import { categoryData } from "../features/categorySlice";
 
-export default function LocationForm({ closeModal }) {
+export default function LocationForm({ close }) {
   const CategoryData = useSelector(categoryData);
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ export default function LocationForm({ closeModal }) {
 
   const onSubmit = (data) => {
     dispatch(add(data));
-    closeModal();
+    close();
   };
 
   return (
@@ -49,7 +49,7 @@ export default function LocationForm({ closeModal }) {
       <div>
         <input type="submit" />
 
-        <button onClick={closeModal}> Cancel</button>
+        <button onClick={close}> Cancel</button>
       </div>
     </form>
   );

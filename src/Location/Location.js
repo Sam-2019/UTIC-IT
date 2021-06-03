@@ -16,7 +16,7 @@ const Location = (props) => {
     <>
       <div className="page_header">
         <h2>Locations</h2>
-        <Button color="success" onClick={() => setModal(false)}>
+        <Button color="success" onClick={setModal(true)}>
           Add
         </Button>
       </div>
@@ -26,13 +26,8 @@ const Location = (props) => {
       ))}
 
       {modal ? (
-        <PopUp close={() => setModal(false)}>
-          <Form
-            close={() => {
-              setModal(false);
-            }}
-          />
-          ]
+        <PopUp>
+          <Form close={setModal(false)} />]
         </PopUp>
       ) : null}
     </>

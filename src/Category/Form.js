@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { add } from "../features/categorySlice";
 
-export default function CategoryForm({ closeModal }) {
+export default function CategoryForm({ close }) {
   const dispatch = useDispatch();
   const {
     register,
@@ -14,7 +14,7 @@ export default function CategoryForm({ closeModal }) {
 
   const onSubmit = (data) => {
     dispatch(add(data));
-    closeModal();
+    close();
   };
 
   return (
@@ -25,7 +25,7 @@ export default function CategoryForm({ closeModal }) {
       <div>
         <input type="submit" />
 
-        <button onClick={closeModal}> Cancel</button>
+        <button onClick={close}> Cancel</button>
       </div>
     </form>
   );
