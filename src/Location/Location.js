@@ -9,11 +9,23 @@ const Location = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
+  const [data, setData] = useState([]);
+
+  const addLocation = (id, name, address, coordinates, category) => {
+    const newLocations = [
+      ...data,
+      { id, name, address, coordinates, category }
+    ];
+    setData(newLocations);
+  };
+
+  const removeLocation = (index) => {
+    const newLocations = [...data];
+    newLocations.splice(index, 1);
+    setData(newLocations);
+  };
 
   const toggle = () => setModal(!modal);
-
-  const sortedLocationList = LocationList.sort((a, d) => d.name - a.name);
-  console.log(sortedLocationList);
 
   return (
     <>
@@ -25,11 +37,11 @@ const Location = (props) => {
       </div>
 
       {LocationList.sort().map((item, index) => (
-        <LocationItem key={index} {...item} />
+        <LocationItem key={index} {...item} removeLocation={removeLocation} />
       ))}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <Form />
+        <Form addLocation={addLocation} />
       </ModalItem>
     </>
   );

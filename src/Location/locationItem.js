@@ -5,6 +5,7 @@ import { Button } from "reactstrap";
 const LocationItem = ({ id, name }) => {
   let history = useHistory();
   let match = useRouteMatch();
+
   return (
     <div className="mb-3">
       <div className="list_item">
