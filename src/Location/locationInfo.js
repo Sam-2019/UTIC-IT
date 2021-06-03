@@ -26,7 +26,11 @@ const LocationInfo = (props) => {
         </div>
       </div>
 
-      {locationData.filter((result) => console.log(result))}
+      {locationData
+        .filter((result) => result.name === id)
+        .map((data, index) => (
+          <div key={index}>hello</div>
+        ))}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
         <Form />
