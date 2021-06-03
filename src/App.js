@@ -4,8 +4,7 @@ import {
   Switch,
   Route,
   Link,
-  useRouteMatch,
-  useHistory
+  useRouteMatch
 } from "react-router-dom";
 import Home from "./Home/Home";
 import Category from "./Category/Category";

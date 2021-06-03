@@ -18,7 +18,9 @@ const LocationInfo = (props) => {
         <p>{id}</p>
 
         <div className="page_header_action">
-          <Button color="secondary">Edit</Button>{" "}
+          <Button color="secondary" onClick={toggle}>
+            Edit
+          </Button>{" "}
           <Button color="danger">Remove</Button>
         </div>
       </div>
