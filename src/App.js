@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
   Link,
-  useRouteMatch,
+  useRouteMatch
 } from "react-router-dom";
 import Home from "./Home/Home";
 import Category from "./Category/Category";
@@ -36,13 +36,13 @@ export default function App() {
           </Switch>
 
           <nav className="page_footer">
-            <div className="mr-1">
+            <div className="mx-2">
               <Link to="/category" className="btn btn-primary">
                 Categories
               </Link>
             </div>
 
-            <div className="ml-1">
+            <div>
               <Link to="/location" className="btn btn-primary">
                 Locations
               </Link>
