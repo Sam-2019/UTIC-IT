@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
 import ModalItem from "../Modal/Modal";
-import Form from "./Form";
+import Form from "./EditForm";
 import LocationItem from "../Location/locationItem";
 
 import { ModalHeader, ModalBody } from "reactstrap";
