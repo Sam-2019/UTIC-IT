@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ModalHeader, ModalBody, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import LocationItem from "./locationItem";
 import PopUp from "../Modal/Modal";
 import Form from "./Form";
@@ -16,7 +16,7 @@ const Location = (props) => {
     <>
       <div className="page_header">
         <h2>Locations</h2>
-        <Button color="success" onClick={setModal(true)}>
+        <Button color="success" onClick={() => setModal(true)}>
           Add
         </Button>
       </div>
@@ -27,7 +27,12 @@ const Location = (props) => {
 
       {modal ? (
         <PopUp>
-          <Form close={setModal(false)} />]
+          <Form
+            close={() => {
+              setModal(false);
+            }}
+          />
+          ]
         </PopUp>
       ) : null}
     </>

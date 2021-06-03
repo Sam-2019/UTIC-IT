@@ -17,7 +17,7 @@ const Category = () => {
       <div className="page_header">
         <h2>Categories</h2>
 
-        <Button color="success" onClick={setModal(true)}>
+        <Button color="success" onClick={() => setModal(true)}>
           Add
         </Button>
       </div>
@@ -28,7 +28,12 @@ const Category = () => {
 
       {modal ? (
         <PopUp>
-          <Form close={setModal(false)} />]
+          <Form
+            close={() => {
+              setModal(false);
+            }}
+          />
+          ]
         </PopUp>
       ) : null}
     </>
