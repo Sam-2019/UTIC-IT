@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import Input from "../components/input";
+import { Input } from "../components/input";
 
 function CategoryEditForm({ closeModal }) {
-  const [item, setItem] = useState("");
-
-  console.log(item);
+  const [name, setName] = useState("");
 
   return (
     <form>
       <Input
-        class_name="input"
+        class_name="w-100 mb-3"
         placeholder="Password"
         type="text"
-        action={(e) => setItem(e.target.value)}
-        value={item}
+        action={(e) => setName(e.target.value)}
+        value={name}
         autocomplete="Password"
       />
+
+      <button>Submit</button>
+      <button onClick={closeModal}>Cancel</button>
     </form>
   );
 }

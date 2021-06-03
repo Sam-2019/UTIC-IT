@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
+import { ModalHeader, ModalBody, Button } from "reactstrap";
 import LocationItem from "./locationItem";
 import ModalItem from "../Modal/Modal";
 import Form from "./Form";
@@ -30,7 +30,10 @@ const Location = (props) => {
       ))}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <Form closeModal={toggle} />
+        <ModalHeader>Add Category</ModalHeader>
+        <ModalBody>
+          <Form closeModal={toggle} />
+        </ModalBody>
       </ModalItem>
     </>
   );

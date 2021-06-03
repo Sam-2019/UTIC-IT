@@ -17,7 +17,7 @@ const CategoryInfo = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
-
+  const toggle = () => setModal(!modal);
   const LocationList = useSelector(locationData);
   const FilteredList = LocationList.filter((result) => result.category === id);
   const dispatch = useDispatch();
@@ -40,7 +40,6 @@ const CategoryInfo = (props) => {
     );
   }
 
-  const toggle = () => setModal(!modal);
   return (
     <>
       <div className="page_header">

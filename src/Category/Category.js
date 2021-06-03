@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
+import { ModalHeader, ModalBody, Button } from "reactstrap";
 import CategoryItem from "./categoryItem";
 import ModalItem from "../Modal/Modal";
 import Form from "./Form";
@@ -29,7 +29,10 @@ const Category = ({ className }) => {
       ))}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <Form closeModal={toggle} />
+        <ModalHeader>Add Category</ModalHeader>
+        <ModalBody>
+          <Form closeModal={toggle} />
+        </ModalBody>
       </ModalItem>
     </>
   );
