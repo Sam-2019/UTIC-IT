@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { Input } from "../components/input";
 
+import { useSelector, useDispatch } from "react-redux";
+import { locationData, edit } from "../features/locationSlice";
+
 function LocationEditForm({ closeModal }) {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [coordinate, setCoordinate] = useState("");
   const [category, setCategory] = useState("");
+
+  const LocationList = useSelector(locationData);
+  console.log(LocationList);
+  const dispatch = useDispatch();
+
+  const updateLocation = () => {
+    dispatch(edit(name, address, coordinate, category));
+  };
 
   return (
     <form>
@@ -41,7 +52,7 @@ function LocationEditForm({ closeModal }) {
         value={category}
       />
 
-      <button>Submit</button>
+      <button onClick={() => updateLocation()}>Submit</button>
       <button onClick={closeModal}>Cancel</button>
     </form>
   );
