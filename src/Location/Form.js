@@ -49,7 +49,7 @@ export default function LocationForm({ closeModal }) {
       <div>
         <input type="submit" />
 
-        <button onClick={() => closeModal()}> Cancel</button>
+        <button onClick={closeModal}> Cancel</button>
       </div>
     </form>
   );

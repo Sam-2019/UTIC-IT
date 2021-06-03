@@ -9,7 +9,6 @@ export default function CategoryForm({ closeModal }) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors }
   } = useForm();
 
@@ -17,8 +16,6 @@ export default function CategoryForm({ closeModal }) {
     dispatch(add(data));
     closeModal();
   };
-
-  console.log(watch("example"));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -28,7 +25,7 @@ export default function CategoryForm({ closeModal }) {
       <div>
         <input type="submit" />
 
-        <button onClick={() => closeModal()}> Cancel</button>
+        <button onClick={closeModal}> Cancel</button>
       </div>
     </form>
   );

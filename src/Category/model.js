@@ -13,6 +13,6 @@ export const Category = [
   },
   {
     id: "4",
-    name: "Church"
+    name: "Health"
   }
 ];

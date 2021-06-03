@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
-import { Location as locationData } from "../Location/model";
-import LocationItem from "../Location/locationItem";
+
 import ModalItem from "../Modal/Modal";
 import Form from "./Form";
+import LocationItem from "../Location/locationItem";
+
+import { useSelector, useDispatch } from "react-redux";
+import { locationData, remove } from "../features/locationSlice";
 
 const CategoryInfo = (props) => {
   let { id } = useParams();
@@ -12,6 +15,28 @@ const CategoryInfo = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
+
+  const LocationList = useSelector(locationData);
+  const FilteredList = LocationList.filter((result) => result.category === id);
+  const dispatch = useDispatch();
+
+  let viewData;
+
+  if (FilteredList.length === 0) {
+    viewData = <> No data yet</>;
+  }
+
+  if (FilteredList.length > 0) {
+    viewData = (
+      <>
+        {FilteredList.map((data, index) => (
+          <div key={index}>
+            <LocationItem {...data} />
+          </div>
+        ))}
+      </>
+    );
+  }
 
   const toggle = () => setModal(!modal);
   return (
@@ -23,20 +48,16 @@ const CategoryInfo = (props) => {
           <Button color="secondary" onClick={toggle}>
             Edit
           </Button>{" "}
-          <Button color="danger">Remove</Button>
+          <Button color="danger" onClick={() => dispatch(remove(id))}>
+            Remove
+          </Button>
         </div>
       </div>
 
-      {locationData
-        .filter((result) => result.category === id)
-        .map((data, index) => (
-          <div key={index}>
-            <LocationItem {...data} />
-          </div>
-        ))}
+      {viewData}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <Form />
+        <Form closeModal={toggle} />
       </ModalItem>
     </>
   );
