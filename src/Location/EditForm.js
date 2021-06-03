@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../components/input";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -10,5 +10,18 @@ export default function LocationEditForm({ closeModal }) {
 
   console.log(CategoryData);
 
-  return <form></form>;
+  const [item, setItem] = useState("");
+
+  return (
+    <form>
+      <Input
+        class_name="input"
+        placeholder="Password"
+        type="text"
+        action={(e) => setItem(e.target.value)}
+        value={item}
+        autocomplete="Password"
+      />
+    </form>
+  );
 }
