@@ -1,14 +1,14 @@
 import React from "react";
-import { Modal, ModalHeader, ModalBody } from "reactstrap";
+import "./popup.css";
 
-const ModalItem = ({ className, currentState, toggle, children }) => {
+const PopUp = ({ children, close }) => {
   return (
-    <>
-      <Modal isOpen={currentState} toggle={toggle} className={className}>
-        {children}
-      </Modal>
-    </>
+    <div className="popup-wrapper">
+      <div className="popup">
+        <div>{children}</div>
+      </div>
+    </div>
   );
 };
 
-export default ModalItem;
+export default PopUp;
