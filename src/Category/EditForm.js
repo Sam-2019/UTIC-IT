@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import { Input } from "../components/input";
 
+import { useSelector, useDispatch } from "react-redux";
+import { categoryData, edit } from "../features/categorySlice";
+
 function CategoryEditForm({ closeModal }) {
   const [name, setName] = useState("");
+
+  const CategoryList = useSelector(categoryData);
+  console.log(CategoryList);
+  const dispatch = useDispatch();
+
+  const updateCategory = () => {
+    dispatch(edit(name));
+  };
 
   return (
     <form>
@@ -15,7 +26,7 @@ function CategoryEditForm({ closeModal }) {
         autocomplete="Password"
       />
 
-      <button>Submit</button>
+      <button onClick={() => updateCategory()}>Submit</button>
       <button onClick={closeModal}>Cancel</button>
     </form>
   );
