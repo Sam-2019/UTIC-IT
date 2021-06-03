@@ -14,18 +14,27 @@ export default function LocationForm({ close }) {
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinate] = useState("");
   const [category, setCategory] = useState(CategoryData[0].name);
+  const [message, setMessage] = useState("");
 
   const onSubmit = () => {
-    const data = {
-      id: uuid(),
-      name,
-      address,
-      coordinates,
-      category
-    };
+    let empty = name && address && coordinates && category;
 
-    dispatch(add(data));
-    close();
+    if (empty === "") {
+      return;
+    }
+
+    if (empty !== "") {
+      const data = {
+        id: uuid(),
+        name,
+        address,
+        coordinates,
+        category
+      };
+
+      dispatch(add(data));
+      close();
+    }
   };
 
   return (
@@ -67,6 +76,8 @@ export default function LocationForm({ close }) {
           </option>
         ))}
       </select>
+
+      {message}
 
       <button onClick={onSubmit} className="btn btn-primary me-2">
         Submit

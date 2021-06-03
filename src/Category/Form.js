@@ -9,15 +9,24 @@ export default function CategoryForm({ close }) {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
 
   const onSubmit = () => {
-    const data = {
-      id: uuid(),
-      name
-    };
+    let empty = name;
 
-    dispatch(add(data));
-    close();
+    if (empty === "") {
+      return;
+    }
+
+    if (empty !== "") {
+      const data = {
+        id: uuid(),
+        name
+      };
+
+      dispatch(add(data));
+      close();
+    }
   };
   return (
     <form>
@@ -28,6 +37,9 @@ export default function CategoryForm({ close }) {
         action={(e) => setName(e.target.value)}
         value={name}
       />
+
+      {message}
+
       <button onClick={onSubmit} className="btn btn-primary me-2">
         Submit
       </button>
