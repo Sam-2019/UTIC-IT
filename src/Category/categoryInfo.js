@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
 import ModalItem from "../Modal/Modal";
-import Form from "./EditForm";
+import EditForm from "./EditForm";
 import LocationItem from "../Location/locationItem";
 
 import { ModalHeader, ModalBody } from "reactstrap";
@@ -60,7 +60,7 @@ const CategoryInfo = (props) => {
       <ModalItem toggle={toggle} currentState={modal} className={className}>
         <ModalHeader>Edit Category</ModalHeader>
         <ModalBody>
-          <Form closeModal={toggle} />
+          <EditForm closeModal={toggle} />
         </ModalBody>
       </ModalItem>
     </>

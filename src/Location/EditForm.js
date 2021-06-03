@@ -14,7 +14,13 @@ function LocationEditForm({ closeModal }) {
   const dispatch = useDispatch();
 
   const updateLocation = () => {
-    dispatch(edit(name, address, coordinate, category));
+    const data = {
+      name,
+      address,
+      coordinate,
+      category
+    };
+    dispatch(edit(data));
   };
 
   return (
@@ -51,7 +57,7 @@ function LocationEditForm({ closeModal }) {
         value={category}
       />
 
-      <button onClick={() => updateLocation()}>Submit</button>
+      <button onClick={updateLocation()}>Submit</button>
       <button onClick={closeModal}>Cancel</button>
     </form>
   );

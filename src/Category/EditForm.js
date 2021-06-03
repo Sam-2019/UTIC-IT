@@ -11,22 +11,25 @@ function CategoryEditForm({ closeModal }) {
   const dispatch = useDispatch();
 
   const updateCategory = () => {
-    dispatch(edit(name));
+    const data = {
+      name
+    };
+
+    dispatch(edit(data));
   };
 
   return (
     <form>
       <Input
         class_name="w-100 mb-3"
-        placeholder="Password"
+        placeholder="name"
         type="text"
         action={(e) => setName(e.target.value)}
         value={name}
-        autocomplete="Password"
       />
 
-      <button onClick={() => updateCategory()}>Submit</button>
-      <button onClick={closeModal}>Cancel</button>
+      <button onClick={updateCategory()}>Submit</button>
+      <button onClick={closeModal}> Cancel</button>
     </form>
   );
 }
