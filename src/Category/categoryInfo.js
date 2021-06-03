@@ -6,6 +6,8 @@ import ModalItem from "../Modal/Modal";
 import Form from "./Form";
 import LocationItem from "../Location/locationItem";
 
+import { ModalHeader, ModalBody } from "reactstrap";
+
 import { useSelector, useDispatch } from "react-redux";
 import { locationData, remove } from "../features/locationSlice";
 
@@ -57,7 +59,10 @@ const CategoryInfo = (props) => {
       {viewData}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <Form closeModal={toggle} />
+        <ModalHeader>Edit Category</ModalHeader>
+        <ModalBody>
+          <Form closeModal={toggle} />
+        </ModalBody>
       </ModalItem>
     </>
   );

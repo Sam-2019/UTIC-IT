@@ -5,8 +5,7 @@ const ModalItem = ({ className, currentState, toggle, children }) => {
   return (
     <>
       <Modal isOpen={currentState} toggle={toggle} className={className}>
-        <ModalHeader>Add Category</ModalHeader>
-        <ModalBody>{children}</ModalBody>
+        {children}
       </Modal>
     </>
   );

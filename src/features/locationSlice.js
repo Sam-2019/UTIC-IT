@@ -12,7 +12,8 @@ export const locationSlice = createSlice({
       return state;
     },
     remove: (state, action) => {
-      return state.value.filter((item) => item.id !== action.payload);
+      state.value.filter((item) => item.id !== action.payload);
+      return state;
     },
     edit: (state, action) => {
       return state.map((location) => {

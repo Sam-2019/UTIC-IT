@@ -1,10 +1,9 @@
 import React from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
 
 const LocationItem = ({ id, name }) => {
   let history = useHistory();
-  let match = useRouteMatch();
 
   return (
     <div className="mb-3">
@@ -14,7 +13,7 @@ const LocationItem = ({ id, name }) => {
         <Button
           color="primary"
           onClick={() => {
-            history.push(`${match.url}/${name}`);
+            history.push(`/location/${name}`);
           }}
         >
           View

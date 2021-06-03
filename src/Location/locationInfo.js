@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 import ModalItem from "../Modal/Modal";
-import Form from "./Form";
+import EditForm from "./EditForm";
+import { ModalHeader, ModalBody } from "reactstrap";
 
 import { useSelector, useDispatch } from "react-redux";
 import { locationData, remove } from "../features/locationSlice";
@@ -55,7 +56,10 @@ const LocationInfo = (props) => {
       {viewData}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <Form closeModal={toggle} />
+        <ModalHeader>Edit Location</ModalHeader>
+        <ModalBody>
+          <EditForm closeModal={toggle} />
+        </ModalBody>
       </ModalItem>
     </>
   );

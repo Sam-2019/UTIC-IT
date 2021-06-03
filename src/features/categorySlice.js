@@ -14,9 +14,7 @@ export const categorySlice = createSlice({
     remove: (state, action) => {
       return state.value.filter((item) => item.id !== action.payload);
     },
-    edit: (state, action) => {
-      state.value += action.payload;
-    }
+    edit: (state, action) => {}
   }
 });
 
