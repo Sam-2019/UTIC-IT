@@ -1,31 +1,20 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
-import { Location as LocationList } from "./model";
 import LocationItem from "./locationItem";
 import ModalItem from "../Modal/Modal";
 import Form from "./Form";
+
+import { useSelector } from "react-redux";
+import { locationData } from "../features/locationSlice";
 
 const Location = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
-  const [data, setData] = useState([]);
-
-  const addLocation = (id, name, address, coordinates, category) => {
-    const newLocations = [
-      ...data,
-      { id, name, address, coordinates, category }
-    ];
-    setData(newLocations);
-  };
-
-  const removeLocation = (index) => {
-    const newLocations = [...data];
-    newLocations.splice(index, 1);
-    setData(newLocations);
-  };
 
   const toggle = () => setModal(!modal);
+
+  const LocationList = useSelector(locationData);
 
   return (
     <>
@@ -36,12 +25,12 @@ const Location = (props) => {
         </Button>
       </div>
 
-      {LocationList.sort().map((item, index) => (
-        <LocationItem key={index} {...item} removeLocation={removeLocation} />
+      {LocationList.map((item, index) => (
+        <LocationItem key={index} {...item} />
       ))}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <Form addLocation={addLocation} />
+        <Form closeModal={toggle} />
       </ModalItem>
     </>
   );

@@ -3,7 +3,6 @@ import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 import ModalItem from "../Modal/Modal";
 import Form from "./Form";
-import { Location as locationData } from "./model";
 
 const LocationInfo = (props) => {
   let { id } = useParams();
@@ -26,11 +25,12 @@ const LocationInfo = (props) => {
         </div>
       </div>
 
-      {locationData
-        .filter((result) => result.name === id)
-        .map((data, index) => (
-          <div key={index}>hello</div>
-        ))}
+      {/* <div key={data[0].id}>
+        <p>{data[0].name}</p>
+        <p>{data[0].address} </p>
+        <p>{data[0].coordinates}</p>
+        <p>{data[0].category} </p>
+      </div> */}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
         <Form />

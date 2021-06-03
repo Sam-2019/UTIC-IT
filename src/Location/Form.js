@@ -1,9 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Category as CategoryData } from "../Category/model";
 
-export default function App() {
-  console.log(CategoryData);
+import { useSelector, useDispatch } from "react-redux";
+import { add } from "../features/locationSlice";
+import { categoryData } from "../features/categorySlice";
+
+export default function LocationForm({ closeModal }) {
+  const CategoryData = useSelector(categoryData);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -12,7 +16,8 @@ export default function App() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(add(data));
+    closeModal();
   };
 
   return (
@@ -43,6 +48,8 @@ export default function App() {
 
       <div>
         <input type="submit" />
+
+        <button onClick={() => closeModal()}> Cancel</button>
       </div>
     </form>
   );

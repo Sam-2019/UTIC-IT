@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
-import { Category as CategoryList } from "./model";
 import CategoryItem from "./categoryItem";
 import ModalItem from "../Modal/Modal";
 import Form from "./Form";
+
+import { useSelector } from "react-redux";
+import { categoryData } from "../features/categorySlice";
 
 const Category = ({ className }) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+
+  const CategoryList = useSelector(categoryData);
 
   return (
     <>
@@ -25,7 +29,7 @@ const Category = ({ className }) => {
       ))}
 
       <ModalItem toggle={toggle} currentState={modal} className={className}>
-        <Form />
+        <Form closeModal={toggle} />
       </ModalItem>
     </>
   );

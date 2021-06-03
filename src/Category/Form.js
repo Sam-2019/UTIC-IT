@@ -1,7 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function App() {
+import { useDispatch } from "react-redux";
+import { add } from "../features/categorySlice";
+
+export default function CategoryForm({ closeModal }) {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -10,7 +14,8 @@ export default function App() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(add(data));
+    closeModal();
   };
 
   console.log(watch("example"));
@@ -22,6 +27,8 @@ export default function App() {
 
       <div>
         <input type="submit" />
+
+        <button onClick={() => closeModal()}> Cancel</button>
       </div>
     </form>
   );
