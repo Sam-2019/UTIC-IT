@@ -12,7 +12,7 @@ function CategoryEditForm({ close }) {
 
   const updateCategory = () => {
     const data = {
-      name,
+      name
     };
 
     dispatch(edit(data));
@@ -21,15 +21,20 @@ function CategoryEditForm({ close }) {
   return (
     <form>
       <Input
-        class_name="w-100 mb-3"
+        class_name="w-100 mb-3 input"
         placeholder="name"
         type="text"
         action={(e) => setName(e.target.value)}
         value={name}
       />
 
-      <button onClick={updateCategory()}>Submit</button>
-      <button onClick={close}> Cancel</button>
+      <button onClick={updateCategory()} className="btn btn-primary me-2">
+        Submit
+      </button>
+      <button onClick={close} className="btn btn-danger">
+        {" "}
+        Cancel
+      </button>
     </form>
   );
 }

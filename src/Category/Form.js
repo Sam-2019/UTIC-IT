@@ -13,7 +13,7 @@ export default function CategoryForm({ close }) {
   const onSubmit = () => {
     const data = {
       id: uuid(),
-      name,
+      name
     };
 
     dispatch(add(data));
@@ -22,14 +22,18 @@ export default function CategoryForm({ close }) {
   return (
     <form>
       <Input
-        class_name="w-100 mb-3"
+        class_name="w-100 mb-3 input"
         placeholder="name"
         type="text"
         action={(e) => setName(e.target.value)}
         value={name}
       />
-      <button onClick={onSubmit}>Submit</button>
-      <button onClick={close}>Cancel</button>
+      <button onClick={onSubmit} className="btn btn-primary me-2">
+        Submit
+      </button>
+      <button onClick={close} className="btn btn-danger">
+        Cancel
+      </button>
     </form>
   );
 }

@@ -39,9 +39,10 @@ const Category = () => {
       </div>
 
       {viewData}
-      
+
       {modal ? (
         <PopUp>
+          <h5>Add Category</h5>
           <Form
             close={() => {
               setModal(false);

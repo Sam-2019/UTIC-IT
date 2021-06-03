@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { v1 as uuid } from 'uuid';
+import { v1 as uuid } from "uuid";
 import { Input } from "../components/input";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -21,7 +21,7 @@ export default function LocationForm({ close }) {
       name,
       address,
       coordinates,
-      category,
+      category
     };
 
     dispatch(add(data));
@@ -31,7 +31,7 @@ export default function LocationForm({ close }) {
   return (
     <form>
       <Input
-        class_name="w-100 mb-3"
+        class_name="w-100 mb-3 input"
         placeholder="name"
         type="text"
         action={(e) => setName(e.target.value)}
@@ -39,7 +39,7 @@ export default function LocationForm({ close }) {
       />
 
       <Input
-        class_name="w-100 mb-3"
+        class_name="w-100 mb-3 input"
         placeholder="address"
         type="text"
         action={(e) => setAddress(e.target.value)}
@@ -47,7 +47,7 @@ export default function LocationForm({ close }) {
       />
 
       <Input
-        class_name="w-100 mb-3"
+        class_name="w-100 mb-3 input"
         placeholder="coordinates"
         type="text"
         action={(e) => setCoordinate(e.target.value)}
@@ -55,7 +55,7 @@ export default function LocationForm({ close }) {
       />
 
       <select
-        className="w-100  mb-2"
+        className="w-100  mb-2 input"
         value={category}
         onChange={(e) => {
           setCategory(e.target.value);
@@ -68,8 +68,12 @@ export default function LocationForm({ close }) {
         ))}
       </select>
 
-      <button onClick={onSubmit}>Submit</button>
-      <button onClick={close}>Cancel</button>
+      <button onClick={onSubmit} className="btn btn-primary me-2">
+        Submit
+      </button>
+      <button onClick={close} className="btn btn-danger me-2">
+        Cancel
+      </button>
     </form>
   );
 }

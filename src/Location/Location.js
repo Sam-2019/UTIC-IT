@@ -42,6 +42,7 @@ const Location = (props) => {
 
       {modal ? (
         <PopUp>
+          <h5>Add Location</h5>
           <Form
             close={() => {
               setModal(false);
