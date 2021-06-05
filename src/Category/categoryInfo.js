@@ -3,13 +3,13 @@ import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
 import EditForm from "./EditForm";
-import LocationItem from "../Location/locationItem";
+import ItemList from "../components/Item_List";
 
 import PopUp from "../Modal/Modal";
 
 import { useSelector, useDispatch } from "react-redux";
 import { locationData } from "../redux_utils/locationSlice";
-import {  remove } from "../redux_utils/categorySlice";
+import { remove } from "../redux_utils/categorySlice";
 
 const CategoryInfo = () => {
   let { id } = useParams();
@@ -31,7 +31,7 @@ const CategoryInfo = () => {
       <>
         {FilteredList.map((data, index) => (
           <div key={index}>
-            <LocationItem {...data} />
+            <ItemList key={index} data={data} path="location" />
           </div>
         ))}
       </>
