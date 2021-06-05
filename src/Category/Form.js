@@ -1,39 +1,25 @@
-import React, { useState } from "react";
-import { v1 as uuid } from "uuid";
-import CategoryForm from "./newForm";
+import React from "react";
+import { Input } from "../components/input";
 
-import { useDispatch } from "react-redux";
-import { add } from "../redux_utils/categorySlice";
-
-export default function CategoryInput({ close }) {
-  const dispatch = useDispatch();
-
-  const [name, setName] = useState("");
-
-  const onSubmit = () => {
-    let empty = name;
-
-    if (empty === "") {
-      return;
-    }
-
-    if (empty !== "") {
-      const data = {
-        id: uuid(),
-        name
-      };
-
-      dispatch(add(data));
-      close();
-    }
-  };
-
+function CategoryForm({ onChange, value, action, close }) {
   return (
-    <CategoryForm
-      onChange={(e) => setName(e.target.value)}
-      value={name}
-      action={onSubmit}
-      close={close}
-    />
+    <form>
+      <Input
+        class_name="w-100 mb-3 input"
+        placeholder="name"
+        type="text"
+        action={onChange}
+        value={value}
+      />
+
+      <button onClick={action} className="btn btn-primary me-2">
+        Submit
+      </button>
+      <button onClick={close} className="btn btn-danger">
+        Cancel
+      </button>
+    </form>
   );
 }
+
+export default CategoryForm;

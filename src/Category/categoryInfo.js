@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
-import EditForm from "./EditForm";
 import ItemList from "../components/Item_List";
 
 import PopUp from "../Modal/Modal";

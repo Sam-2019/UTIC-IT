@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
-import EditForm from "./EditForm";
-
 import PopUp from "../Modal/Modal";
 
 import { useSelector, useDispatch } from "react-redux";
