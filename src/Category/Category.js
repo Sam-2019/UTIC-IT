@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
-import CategoryItem from "./categoryItem";
+import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
 import Form from "./Form";
 
@@ -21,8 +21,8 @@ const Category = () => {
   if (CategoryList.length > 0) {
     viewData = (
       <>
-        {CategoryList.map((item, index) => (
-          <CategoryItem key={index} {...item} />
+        {CategoryList.map((data, index) => (
+          <ItemList key={index} data={data} path="category" />
         ))}
       </>
     );

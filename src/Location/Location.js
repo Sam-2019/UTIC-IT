@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
-import LocationItem from "./locationItem";
+import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
 import Form from "./Form";
 
@@ -21,8 +21,8 @@ const Location = (props) => {
   if (LocationList.length > 0) {
     viewData = (
       <>
-        {LocationList.map((item, index) => (
-          <LocationItem key={index} {...item} />
+        {LocationList.map((data, index) => (
+          <ItemList key={index} data={data} path="location" />
         ))}
       </>
     );
