@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { v1 as uuid } from "uuid";
-import { Input } from "../components/input";
+import CategoryForm from "./newForm";
 
 import { useDispatch } from "react-redux";
 import { add } from "../redux_utils/categorySlice";
 
-export default function CategoryForm({ close }) {
+export default function CategoryInput({ close }) {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
 
   const onSubmit = () => {
     let empty = name;
@@ -28,24 +27,13 @@ export default function CategoryForm({ close }) {
       close();
     }
   };
+
   return (
-    <form>
-      <Input
-        class_name="w-100 mb-3 input"
-        placeholder="name"
-        type="text"
-        action={(e) => setName(e.target.value)}
-        value={name}
-      />
-
-      {message}
-
-      <button onClick={onSubmit} className="btn btn-primary me-2">
-        Submit
-      </button>
-      <button onClick={close} className="btn btn-danger">
-        Cancel
-      </button>
-    </form>
+    <CategoryForm
+      onChange={(e) => setName(e.target.value)}
+      value={name}
+      action={onSubmit}
+      close={close}
+    />
   );
 }
