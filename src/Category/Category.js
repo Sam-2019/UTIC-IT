@@ -3,6 +3,7 @@ import { Button } from "reactstrap";
 import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
 import Form from "./Form";
+import NoData from "../components/NoData";
 
 import { useSelector } from "react-redux";
 import { categoryData } from "../redux_utils/categorySlice";
@@ -15,7 +16,7 @@ const Category = () => {
   let viewData;
 
   if (CategoryList.length === 0) {
-    viewData = <> No data yet</>;
+    viewData = <NoData />;
   }
 
   if (CategoryList.length > 0) {
