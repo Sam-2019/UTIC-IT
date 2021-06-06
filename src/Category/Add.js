@@ -17,13 +17,15 @@ export default function CategoryInput({ close }) {
       return;
     }
 
-    const data = {
-      id: uuid(),
-      name
-    };
+    if (empty !== "") {
+      const data = {
+        id: uuid(),
+        name
+      };
 
-    dispatch(add(data));
-    close();
+      dispatch(add(data));
+      close();
+    }
   };
 
   return (
