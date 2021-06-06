@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v1 as uuid } from "uuid";
 
-import Form from "./newForm";
+import Form from "./Form";
 
 import { useSelector, useDispatch } from "react-redux";
 import { add } from "../redux_utils/locationSlice";
