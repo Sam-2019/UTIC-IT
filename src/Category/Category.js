@@ -11,10 +11,8 @@ import { categoryData } from "../utils/redux/categorySlice";
 
 const Category = () => {
   const [modal, setModal] = useState(false);
-
-  const CategoryList = useSelector(categoryData);
-
   let viewData;
+  const CategoryList = useSelector(categoryData);
 
   if (CategoryList.length === 0) {
     viewData = <NoData />;

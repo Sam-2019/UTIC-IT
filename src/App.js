@@ -6,14 +6,14 @@ import {
   Link,
   useRouteMatch
 } from "react-router-dom";
+import { Container } from "reactstrap";
 import Home from "./Home/Home";
 import Category from "./Category/Category";
 import Location from "./Location/Location";
 import LocationInfo from "./Location/locationInfo";
 import CategoryInfo from "./Category/categoryInfo";
-import { Container } from "reactstrap";
-import "./app.css";
 
+import "./app.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
