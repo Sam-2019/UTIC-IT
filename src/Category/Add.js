@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { v1 as uuid } from "uuid";
-import CategoryForm from "./newForm";
+import CategoryForm from "./Form";
 
 import { useDispatch } from "react-redux";
 import { add } from "../redux_utils/categorySlice";
@@ -12,6 +12,9 @@ export default function CategoryInput({ close }) {
 
   const onSubmit = () => {
     let empty = name;
+
+    console.log(empty);
+    console.log(name);
 
     if (empty === "") {
       return;
