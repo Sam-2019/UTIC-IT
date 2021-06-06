@@ -19,20 +19,28 @@ export default function Add({ close }) {
   const onSubmit = () => {
     let empty = name && address && coordinates && category;
 
+    console.log(empty);
+    console.log(name);
+    console.log(address);
+    console.log(coordinates);
+    console.log(category);
+
     if (empty === "") {
       return;
     }
 
-    const data = {
-      id: uuid(),
-      name,
-      address,
-      coordinates,
-      category
-    };
+    if (empty !== "") {
+      const data = {
+        id: uuid(),
+        name,
+        address,
+        coordinates,
+        category
+      };
 
-    dispatch(add(data));
-    close();
+      dispatch(add(data));
+      close();
+    }
   };
 
   return (
