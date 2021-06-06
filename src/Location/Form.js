@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "reactstrap";
 import { Input } from "../components/input";
 
 export default function Form({
@@ -23,7 +24,6 @@ export default function Form({
         action={nameOnChange}
         value={name}
       />
-
       <Input
         class_name="w-100 mb-3 input"
         placeholder="address"
@@ -31,7 +31,6 @@ export default function Form({
         action={addressOnChange}
         value={address}
       />
-
       <Input
         class_name="w-100 mb-3 input"
         placeholder="coordinates"
@@ -39,7 +38,6 @@ export default function Form({
         action={coordinatenChange}
         value={coordinates}
       />
-
       <select
         className="w-100  mb-2 input"
         value={category}
@@ -51,13 +49,12 @@ export default function Form({
           </option>
         ))}
       </select>
-
-      <button onClick={submit} className="btn btn-primary me-2">
+      <Button color="primary" onClick={submit}>
         Submit
-      </button>
-      <button onClick={close} className="btn btn-danger me-2">
+      </Button>{" "}
+      <Button color="danger" onClick={close}>
         Cancel
-      </button>
+      </Button>
     </form>
   );
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
+import Edit from "./Edit";
 import PopUp from "../Modal/Modal";
 import NoData from "../components/NoData";
 
@@ -72,7 +73,7 @@ const LocationInfo = () => {
 
       {modal ? (
         <PopUp>
-          <EditForm
+          <Edit
             close={() => {
               setModal(false);
             }}
