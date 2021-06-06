@@ -19,12 +19,6 @@ export default function Add({ close }) {
   const onSubmit = () => {
     let empty = name && address && coordinates && category;
 
-    console.log(empty);
-    console.log(name);
-    console.log(address);
-    console.log(coordinates);
-    console.log(category);
-
     if (empty === "") {
       return;
     }

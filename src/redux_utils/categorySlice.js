@@ -5,35 +5,35 @@ export const categorySlice = createSlice({
   initialState: [
     {
       id: "1",
-      name: "Bank",
+      name: "Bank"
     },
     {
       id: "2",
-      name: "Hotel",
+      name: "Hotel"
     },
     {
       id: "3",
-      name: "Ministry",
+      name: "Ministry"
     },
     {
       id: "4",
-      name: "Health",
-    },
+      name: "Health"
+    }
   ],
 
   reducers: {
     add: (state, action) => {
-      state.push(action.payload);
-      return state;
+      console.log(action.payload.id);
+      console.log(state);
     },
     remove: (state, action) => {
       const newState = state.filter((result) => result.name !== action.payload);
       return newState;
     },
     edit: (state, action) => {
-      console.log(action.payload)
-    },
-  },
+      console.log(action.payload);
+    }
+  }
 });
 
 export const { add, edit, remove } = categorySlice.actions;
