@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
-import Edit from "./Edit";
+import Add from "./Add";
 import NoData from "../components/NoData";
 
 import { Button } from "reactstrap";
@@ -45,7 +45,7 @@ const Location = () => {
       {modal && (
         <PopUp>
           <h5>Add Location</h5>
-          <Edit
+          <Add
             close={() => {
               setModal(false);
             }}
