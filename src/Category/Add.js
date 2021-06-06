@@ -24,7 +24,6 @@ export default function CategoryInput({ close }) {
       };
 
       dispatch(add(data));
-      close();
     }
   };
 

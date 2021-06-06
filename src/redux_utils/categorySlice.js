@@ -23,8 +23,11 @@ export const categorySlice = createSlice({
 
   reducers: {
     add: (state, action) => {
-      console.log(action.payload.id);
-      console.log(state);
+      state.push({
+        id: action.payload.id,
+        name: action.payload.name
+      });
+      return state;
     },
     remove: (state, action) => {
       const newState = state.filter((result) => result.name !== action.payload);
