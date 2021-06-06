@@ -3,6 +3,7 @@ import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
 import PopUp from "../Modal/Modal";
+import NoData from "../components/NoData";
 
 import { useSelector, useDispatch } from "react-redux";
 import { locationData, remove } from "../redux_utils/locationSlice";
@@ -26,7 +27,7 @@ const LocationInfo = () => {
   let viewData;
 
   if (FilteredList.length === 0) {
-    viewData = <> No data yet</>;
+    viewData = <NoData />;
   }
 
   if (FilteredList.length > 0) {

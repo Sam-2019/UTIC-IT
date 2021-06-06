@@ -3,6 +3,7 @@ import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
 import ItemList from "../components/Item_List";
+import NoData from "../components/NoData";
 
 import PopUp from "../Modal/Modal";
 import Edit from "./Edit";
@@ -23,7 +24,7 @@ const CategoryInfo = () => {
   let viewData;
 
   if (FilteredList.length === 0) {
-    viewData = <> No data yet</>;
+    viewData = <NoData />;
   }
 
   if (FilteredList.length > 0) {
