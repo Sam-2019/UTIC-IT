@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import CategoryForm from "./Form";
+import Form from "./Form";
 
 import { useDispatch } from "react-redux";
-import { edit } from "../redux_utils/categorySlice";
+import { edit } from "../utils/redux/categorySlice";
 
 function CategoryEditForm({ close }) {
   const [name, setName] = useState("");
@@ -18,10 +18,10 @@ function CategoryEditForm({ close }) {
   };
 
   return (
-    <CategoryForm
+    <Form
       onChange={(e) => setName(e.target.value)}
       value={name}
-      action={updateCategory()}
+      action={updateCategory}
       close={close}
     />
   );

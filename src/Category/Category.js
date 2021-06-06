@@ -7,7 +7,7 @@ import NoData from "../components/NoData";
 
 import { Button } from "reactstrap";
 import { useSelector } from "react-redux";
-import { categoryData } from "../redux_utils/categorySlice";
+import { categoryData } from "../utils/redux/categorySlice";
 
 const Category = () => {
   const [modal, setModal] = useState(false);

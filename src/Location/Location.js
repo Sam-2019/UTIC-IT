@@ -7,7 +7,7 @@ import NoData from "../components/NoData";
 
 import { Button } from "reactstrap";
 import { useSelector } from "react-redux";
-import { locationData } from "../redux_utils/locationSlice";
+import { locationData } from "../utils/redux/locationSlice";
 
 const Location = () => {
   const [modal, setModal] = useState(false);

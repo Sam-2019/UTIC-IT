@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Form from "./Form";
 
 import { useSelector, useDispatch } from "react-redux";
-import { edit } from "../redux_utils/locationSlice";
-import { categoryData } from "../redux_utils/categorySlice";
+import { edit } from "../utils/redux/locationSlice";
+import { categoryData } from "../utils/redux/categorySlice";
 
 function LocationEditForm({ close, locationID }) {
   const [name, setName] = useState("");

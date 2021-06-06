@@ -3,7 +3,7 @@ import { v1 as uuid } from "uuid";
 import Form from "./Form";
 
 import { useDispatch } from "react-redux";
-import { add } from "../redux_utils/categorySlice";
+import { add } from "../utils/redux/categorySlice";
 
 export default function CategoryInput({ close }) {
   const dispatch = useDispatch();

@@ -3,8 +3,8 @@ import { v1 as uuid } from "uuid";
 import Form from "./Form";
 
 import { useSelector, useDispatch } from "react-redux";
-import { add } from "../redux_utils/locationSlice";
-import { categoryData } from "../redux_utils/categorySlice";
+import { add } from "../utils/redux/locationSlice";
+import { categoryData } from "../utils/redux/categorySlice";
 
 export default function Add({ close }) {
   const CategoryData = useSelector(categoryData);

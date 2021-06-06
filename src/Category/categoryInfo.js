@@ -9,8 +9,8 @@ import PopUp from "../Modal/Modal";
 import Edit from "./Edit";
 
 import { useSelector, useDispatch } from "react-redux";
-import { locationData } from "../redux_utils/locationSlice";
-import { remove } from "../redux_utils/categorySlice";
+import { locationData } from "../utils/redux/locationSlice";
+import { remove } from "../utils/redux/categorySlice";
 
 const CategoryInfo = () => {
   let { id } = useParams();
@@ -56,15 +56,16 @@ const CategoryInfo = () => {
 
       {viewData}
 
-      {modal ? (
+      {modal && (
         <PopUp>
           <Edit
             close={() => {
               setModal(false);
             }}
+            categoryID={id}
           />
         </PopUp>
-      ) : null}
+      )}
     </>
   );
 };
