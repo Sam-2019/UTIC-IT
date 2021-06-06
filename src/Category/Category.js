@@ -31,7 +31,7 @@ const Category = () => {
   return (
     <>
       <div className="page_header">
-        <h2>Categories</h2>
+        <h1>Categories</h1>
 
         <Button color="success" onClick={() => setModal(true)}>
           Add

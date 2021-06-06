@@ -3,6 +3,7 @@ import { Button } from "reactstrap";
 import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
 import Form from "./Form";
+import Edit from "./Edit";
 
 import { useSelector } from "react-redux";
 import { locationData } from "../redux_utils/locationSlice";
@@ -31,7 +32,7 @@ const Location = (props) => {
   return (
     <>
       <div className="page_header">
-        <h2>Locations</h2>
+        <h1>Locations</h1>
 
         <Button color="success" onClick={() => setModal(true)}>
           Add
@@ -43,7 +44,7 @@ const Location = (props) => {
       {modal ? (
         <PopUp>
           <h5>Add Location</h5>
-          <Form
+          <Edit
             close={() => {
               setModal(false);
             }}
