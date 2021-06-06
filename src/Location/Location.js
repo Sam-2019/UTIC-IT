@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "reactstrap";
+
 import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
 import Edit from "./Edit";
@@ -8,7 +9,7 @@ import NoData from "../components/NoData";
 import { useSelector } from "react-redux";
 import { locationData } from "../redux_utils/locationSlice";
 
-const Location = (props) => {
+const Location = () => {
   const [modal, setModal] = useState(false);
 
   const LocationList = useSelector(locationData);

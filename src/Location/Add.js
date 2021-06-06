@@ -10,7 +10,6 @@ import { categoryData } from "../redux_utils/categorySlice";
 export default function Add({ close }) {
   const CategoryData = useSelector(categoryData);
   const dispatch = useDispatch();
-  console.log(CategoryData);
 
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "./Form";
 
 import { useSelector, useDispatch } from "react-redux";
-import { locationData, edit } from "../redux_utils/locationSlice";
+import { edit } from "../redux_utils/locationSlice";
 import { categoryData } from "../redux_utils/categorySlice";
 
 function LocationEditForm({ close, locationID }) {
@@ -12,7 +12,6 @@ function LocationEditForm({ close, locationID }) {
   const [category, setCategory] = useState("");
 
   const CategoryData = useSelector(categoryData);
-  const LocationList = useSelector(locationData);
   const dispatch = useDispatch();
 
   const updateLocation = () => {
