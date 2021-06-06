@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ItemList from "../components/Item_List";
 
 import PopUp from "../Modal/Modal";
+import Edit from "./Edit";
 
 import { useSelector, useDispatch } from "react-redux";
 import { locationData } from "../redux_utils/locationSlice";
@@ -56,7 +57,7 @@ const CategoryInfo = () => {
 
       {modal ? (
         <PopUp>
-          <EditForm
+          <Edit
             close={() => {
               setModal(false);
             }}

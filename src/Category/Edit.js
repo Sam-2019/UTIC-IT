@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CategoryForm from "./newForm";
+import CategoryForm from "./Form";
 
 import { useDispatch } from "react-redux";
 import { edit } from "../redux_utils/categorySlice";
