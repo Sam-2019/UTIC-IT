@@ -71,7 +71,7 @@ const LocationInfo = () => {
 
       {viewData}
 
-      {modal ? (
+      {modal && (
         <PopUp>
           <Edit
             close={() => {
@@ -80,7 +80,7 @@ const LocationInfo = () => {
             locationID={FilteredList[0].id}
           />
         </PopUp>
-      ) : null}
+      )}
     </>
   );
 };
