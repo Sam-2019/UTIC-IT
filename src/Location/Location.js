@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
-import Form from "./Form";
 import Edit from "./Edit";
 
 import { useSelector } from "react-redux";
@@ -41,7 +40,7 @@ const Location = (props) => {
 
       {viewData}
 
-      {modal ? (
+      {modal && (
         <PopUp>
           <h5>Add Location</h5>
           <Edit
@@ -50,7 +49,7 @@ const Location = (props) => {
             }}
           />
         </PopUp>
-      ) : null}
+      )}
     </>
   );
 };

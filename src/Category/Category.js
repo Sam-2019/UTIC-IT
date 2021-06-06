@@ -40,7 +40,7 @@ const Category = () => {
 
       {viewData}
 
-      {modal ? (
+      {modal && (
         <PopUp>
           <h5>Add Category</h5>
           <Form
@@ -49,7 +49,7 @@ const Category = () => {
             }}
           />
         </PopUp>
-      ) : null}
+      )}
     </>
   );
 };
