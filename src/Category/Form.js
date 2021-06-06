@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "reactstrap";
 import { Input } from "../components/input";
 
 function CategoryForm({ nameOnChange, name, close, submit }) {
@@ -11,13 +12,12 @@ function CategoryForm({ nameOnChange, name, close, submit }) {
         action={nameOnChange}
         value={name}
       />
-
-      <button onClick={submit} className="btn btn-primary me-2">
+      <Button color="primary" onClick={submit}>
         Submit
-      </button>
-      <button onClick={close} className="btn btn-danger">
+      </Button>{" "}
+      <Button color="danger" onClick={close}>
         Cancel
-      </button>
+      </Button>
     </form>
   );
 }
