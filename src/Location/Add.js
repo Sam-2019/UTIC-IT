@@ -23,18 +23,16 @@ export default function Add({ close }) {
       return;
     }
 
-    if (empty !== "") {
-      const data = {
-        id: uuid(),
-        name,
-        address,
-        coordinates,
-        category
-      };
+    const data = {
+      id: uuid(),
+      name,
+      address,
+      coordinates,
+      category
+    };
 
-      dispatch(add(data));
-      close();
-    }
+    dispatch(add(data));
+    close();
   };
 
   return (
