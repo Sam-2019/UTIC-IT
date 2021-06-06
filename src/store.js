@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import categoryReducer from "./redux_utils/categorySlice";
-import locationReducer from "./redux_utils/locationSlice";
+import categoryReducer from "./utils/redux/categorySlice";
+import locationReducer from "./utils/redux/locationSlice";
 
 export default configureStore({
   reducer: {

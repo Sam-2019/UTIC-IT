@@ -16,37 +16,37 @@ const LocationInfo = () => {
   const [modal, setModal] = useState(false);
 
   const LocationList = useSelector(locationData);
-
   const Latitude = getCoordinates(LocationList, id).latitude;
   const Longitude = getCoordinates(LocationList, id).longitude;
+  const FilteredList = getCoordinates(LocationList, id).data;
 
   const dispatch = useDispatch();
 
   let viewData;
 
-  // if (FilteredList.length === 0) {
-  //   viewData = <NoData />;
-  // }
+  if (FilteredList.length === 0) {
+    viewData = <NoData />;
+  }
 
-  // if (FilteredList.length > 0) {
-  //   viewData = (
-  //     <>
-  //       <div key={FilteredList[0].id}>
-  //         <p>{FilteredList[0].address}</p>
+  if (FilteredList.length > 0) {
+    viewData = (
+      <>
+        <div key={FilteredList[0].id}>
+          <p>{FilteredList[0].address}</p>
 
-  //         <div className="page_header">
-  //           <p>{FilteredList[0].coordinates} </p>
+          <div className="page_header">
+            <p>{FilteredList[0].coordinates} </p>
 
-  //           <a href={` https://maps.google.com/?q=${Latitude}, ${Longitude}  `}>
-  //             View on Google Maps{" "}
-  //           </a>
-  //         </div>
+            <a href={` https://maps.google.com/?q=${Latitude}, ${Longitude}  `}>
+              View on Google Maps{" "}
+            </a>
+          </div>
 
-  //         <p>{FilteredList[0].category}</p>
-  //       </div>
-  //     </>
-  //   );
-  // }
+          <p>{FilteredList[0].category}</p>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -57,12 +57,12 @@ const LocationInfo = () => {
           <Button color="secondary" onClick={() => setModal(true)}>
             Edit
           </Button>{" "}
-          {/* <Button
+          <Button
             color="danger"
             onClick={() => dispatch(remove(FilteredList[0].id))}
           >
             Remove
-          </Button> */}
+          </Button>
         </div>
       </div>
 
@@ -74,7 +74,7 @@ const LocationInfo = () => {
             close={() => {
               setModal(false);
             }}
-            // locationID={FilteredList[0].id}
+            locationID={FilteredList[0].id}
           />
         </PopUp>
       )}
