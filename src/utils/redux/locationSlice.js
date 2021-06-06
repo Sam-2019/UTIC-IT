@@ -91,33 +91,32 @@ export const locationSlice = createSlice({
 
   reducers: {
     add: (state, action) => {
-      state.push({
-        id: action.payload.id,
-        name: action.payload.name,
-        address: action.payload.address,
-        coordinates: action.payload.coordinates,
-        category: action.payload.category
-      });
-      return state;
+      return state.concat(action.payload);
     },
     remove: (state, action) => {
       const newState = state.filter((result) => result.id !== action.payload);
       return newState;
     },
+
     edit: (state, action) => {
       const { id, name, address, coordinates, category } = action.payload;
-
-      console.log(id);
-      state.map((location) => {
-        if (location.id === id) {
-          const editableLocation = location;
-          editableLocation.name = name;
-          editableLocation.address = address;
-          editableLocation.coordinates = coordinates;
-          editableLocation.category = category;
+      const data = state.map((result) => {
+        if (result.id === id) {
+          return {
+            id,
+            name,
+            address,
+            coordinates,
+            category
+          };
+        } else {
+          return {
+            ...result
+          };
         }
       });
-      return state;
+
+      return data;
     }
   }
 });

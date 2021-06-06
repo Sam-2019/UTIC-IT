@@ -23,18 +23,28 @@ export const categorySlice = createSlice({
 
   reducers: {
     add: (state, action) => {
-      state.push({
-        id: action.payload.id,
-        name: action.payload.name
-      });
-      return state;
+      return state.concat(action.payload);
     },
     remove: (state, action) => {
       const newState = state.filter((result) => result.name !== action.payload);
       return newState;
     },
     edit: (state, action) => {
-      console.log(action.payload);
+      const { id, name } = action.payload;
+      const data = state.map((result) => {
+        if (result.id === id) {
+          return {
+            id,
+            name
+          };
+        } else {
+          return {
+            ...result
+          };
+        }
+      });
+
+      return data;
     }
   }
 });

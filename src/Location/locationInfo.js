@@ -16,6 +16,7 @@ const LocationInfo = () => {
   const [modal, setModal] = useState(false);
 
   const LocationList = useSelector(locationData);
+
   const Latitude = getCoordinates(LocationList, id).latitude;
   const Longitude = getCoordinates(LocationList, id).longitude;
   const FilteredList = getCoordinates(LocationList, id).data;
