@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
+
 import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
-import Form from "./Form";
+import Add from "./Add";
 import NoData from "../components/NoData";
 
+import { Button } from "reactstrap";
 import { useSelector } from "react-redux";
 import { categoryData } from "../redux_utils/categorySlice";
 
@@ -44,7 +45,7 @@ const Category = () => {
       {modal && (
         <PopUp>
           <h5>Add Category</h5>
-          <Form
+          <Add
             close={() => {
               setModal(false);
             }}
