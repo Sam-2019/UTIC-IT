@@ -14,11 +14,12 @@ const LocationInfo = () => {
   let history = useHistory();
   const [modal, setModal] = useState(false);
 
-  const [filter, setFilter] = useState(null);
+  const [filter, setFilter] = useState({});
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
 
   const LocationList = useSelector(locationData);
+  //console.log(LocationList)
 
   useEffect(() => {
     async function LoadData() {
@@ -27,6 +28,7 @@ const LocationInfo = () => {
           (result) => result.name === id
         );
         const convertArraytoObject = await Object.assign({}, FilterData[0]);
+        console.log(convertArraytoObject);
         const coordinate = await convertArraytoObject.coordinates.split(",");
 
         setFilter(convertArraytoObject);
@@ -57,11 +59,11 @@ const LocationInfo = () => {
           <p>{filter.address}</p>
           <div className="page_header">
             <p>{filter.coordinates} </p>
-            <a href={` https://maps.google.com/?q=${latitude}, ${longitude}`}>
+            <a href={`https://maps.google.com/?q=${latitude}, ${longitude}`}>
               View on Google Maps{" "}
             </a>
           </div>
-          <p>{filter.category}</p>
+          <p>{filter.category[0].name}</p>
         </div>
       </>
     );
