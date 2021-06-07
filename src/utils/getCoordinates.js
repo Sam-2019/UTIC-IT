@@ -3,15 +3,12 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { locationData } from "./redux/locationSlice";
 
-const GetCoordinates = () => {
-  const LocationList = useSelector(locationData);
-
-  const [data] = useState(LocationList);
-  const [id] = useState(null);
-
-  const [Filter, setFilter] = useState(null);
+export const GetCoordinates = (id) => {
+  const [filter, setFilter] = useState([]);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+
+  const data = useSelector(locationData);
 
   useEffect(() => {
     if (data.length > 0) {
@@ -27,10 +24,8 @@ const GetCoordinates = () => {
   }, [data, id]);
 
   return {
-    Filter,
+    filter,
     latitude,
     longitude
   };
 };
-
-export default GetCoordinates;
