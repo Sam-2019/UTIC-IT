@@ -18,7 +18,6 @@ const LocationInfo = () => {
   const [longitude, setLongitude] = useState(null);
 
   const LocationList = useSelector(locationData);
-  console.log(LocationList);
 
   useEffect(() => {
     async function LoadData() {
