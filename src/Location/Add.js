@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { v1 as uuid } from "uuid";
+import { Button } from "reactstrap";
 import Form from "./Form";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -10,21 +11,19 @@ export default function Add({ close }) {
   const CategoryData = useSelector(categoryData);
   const dispatch = useDispatch();
 
-  const [form, setForm] = useState(false);
-
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinate] = useState("");
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState("Select Category");
 
   useEffect(() => {
     function populateSelect() {
       if (CategoryData.length === 0) {
-        setForm(true);
+        setCategory(null);
       }
 
       if (CategoryData.length > 0) {
-        setCategory(null);
+        setCategory(CategoryData);
       }
     }
 
@@ -58,6 +57,9 @@ export default function Add({ close }) {
     view = (
       <div>
         <h2>Please add a Category first!</h2>
+        <Button color="danger" onClick={close}>
+          Cancel
+        </Button>
       </div>
     );
   }
