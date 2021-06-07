@@ -39,8 +39,6 @@ const LocationInfo = () => {
 
   const dispatch = useDispatch();
 
-  console.log(filter);
-
   let viewData;
 
   if (filter === null) {
