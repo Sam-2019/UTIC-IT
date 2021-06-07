@@ -9,7 +9,6 @@ import { categoryData } from "../utils/redux/categorySlice";
 
 export default function Add({ close }) {
   const CategoryData = useSelector(categoryData);
-  console.log(CategoryData);
   const dispatch = useDispatch();
 
   const [form, setForm] = useState(false);
