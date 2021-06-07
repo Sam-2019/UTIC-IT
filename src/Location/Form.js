@@ -44,7 +44,7 @@ export default function Form({
         onChange={categoryOnChange}
       >
         {categoryData.map(({ id, name }) => (
-          <option key={id} value={name}>
+          <option key={name} value={name}>
             {name}
           </option>
         ))}

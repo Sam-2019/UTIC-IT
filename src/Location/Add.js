@@ -16,7 +16,7 @@ export default function Add({ close }) {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinate] = useState("");
-  const [category, setCategory] = useState("Category");
+  const [category, setCategory] = useState(CategoryData);
 
   useEffect(() => {
     function populateSelect() {

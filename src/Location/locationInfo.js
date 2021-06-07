@@ -63,7 +63,7 @@ const LocationInfo = () => {
               View on Google Maps{" "}
             </a>
           </div>
-          <p>{filter.category[0].name}</p>
+          {/* <p>{filter.category[0].name}</p> */}
         </div>
       </>
     );
