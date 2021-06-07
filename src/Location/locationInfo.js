@@ -17,7 +17,7 @@ const LocationInfo = () => {
   const LocationList = useSelector(locationData);
 
   const data = GetCoordinates(id);
-  console.log(LocationList);
+
   console.log(data);
 
   const FilteredList = data.filter;
@@ -30,23 +30,22 @@ const LocationInfo = () => {
 
   let viewData;
 
-  if (FilteredList.length === 0) {
-    viewData = <NoData />;
-  }
+  // if (FilteredList) {
+  //    viewData = <NoData />;
+  //  }
 
-  if (locationData.length > 0) {
+  if (locationData) {
     viewData = (
       <>
-        <div key={FilteredList[0].id}>
-          <p>{FilteredList[0].address}</p>
+        <div key={FilteredList.id}>
+          <p>{FilteredList.address}</p>
           <div className="page_header">
-            <p>{FilteredList[0].coordinates} </p>
-
+            <p>{FilteredList.coordinates} </p>
             <a href={` https://maps.google.com/?q=${Latitude}, ${Longitude}  `}>
               View on Google Maps{" "}
             </a>
           </div>
-          <p>{FilteredList[0].category}</p>
+          <p>{FilteredList.category}</p>
         </div>
       </>
     );
@@ -63,7 +62,7 @@ const LocationInfo = () => {
           </Button>{" "}
           {/* <Button
             color="danger"
-            onClick={() => dispatch(remove(FilteredList[0].id))}
+            onClick={() => dispatch(remove(FilteredList.id))}
           >
             Remove
           </Button> */}
@@ -78,7 +77,7 @@ const LocationInfo = () => {
             close={() => {
               setModal(false);
             }}
-            locationID={FilteredList[0].id}
+            locationID={FilteredList.id}
           /> */}
         </PopUp>
       )}

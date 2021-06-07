@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { locationData } from "./redux/locationSlice";
 
 export const GetCoordinates = (id) => {
-  const [filter, setFilter] = useState([]);
+  const [filter, setFilter] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
 
@@ -17,7 +17,7 @@ export const GetCoordinates = (id) => {
 
       const coordinate = convertArraytoObject.coordinates.split(",");
 
-      setFilter(FilterData);
+      setFilter(convertArraytoObject);
       setLatitude(Number(coordinate[0]));
       setLongitude(Number(coordinate[1]));
     }
