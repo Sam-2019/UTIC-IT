@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
 import Add from "./Add";
-import { NoData } from "../components/NoData";
+import NoData from "../components/NoData";
 
 import { Button } from "reactstrap";
 import { useSelector } from "react-redux";
