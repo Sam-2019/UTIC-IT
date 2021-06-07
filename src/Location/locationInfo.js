@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import Edit from "./Edit";
 import PopUp from "../Modal/Modal";
@@ -11,6 +11,7 @@ import { locationData, remove } from "../utils/redux/locationSlice";
 
 const LocationInfo = () => {
   let { id } = useParams();
+  let history = useHistory();
   const [modal, setModal] = useState(false);
 
   const [filter, setFilter] = useState(null);
@@ -37,6 +38,11 @@ const LocationInfo = () => {
   }, [LocationList, id]);
 
   const dispatch = useDispatch();
+
+  function removeItem() {
+    dispatch(remove(filter.id));
+    history.push("/location");
+  }
 
   let viewData;
 
@@ -70,7 +76,7 @@ const LocationInfo = () => {
           <Button color="secondary" onClick={() => setModal(true)}>
             Edit
           </Button>{" "}
-          <Button color="danger" onClick={() => dispatch(remove(filter.id))}>
+          <Button color="danger" onClick={removeItem}>
             Remove
           </Button>
         </div>
