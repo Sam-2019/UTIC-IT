@@ -44,7 +44,6 @@ const Location = () => {
 
       {modal && (
         <PopUp>
-          <h5>Add Location</h5>
           <Add
             close={() => {
               setModal(false);
