@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
@@ -8,44 +8,57 @@ import NoData from "../components/NoData";
 
 import { useSelector, useDispatch } from "react-redux";
 import { locationData, remove } from "../utils/redux/locationSlice";
-import { GetCoordinates } from "../utils/getCoordinates";
 
 const LocationInfo = () => {
   let { id } = useParams();
   const [modal, setModal] = useState(false);
 
+  const [filter, setFilter] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+
   const LocationList = useSelector(locationData);
+  console.log(LocationList);
 
-  const data = GetCoordinates(id);
+  useEffect(() => {
+    async function LoadData() {
+      if (LocationList) {
+        const FilterData = await LocationList.filter(
+          (result) => result.name === id
+        );
+        const convertArraytoObject = await Object.assign({}, FilterData[0]);
+        const coordinate = await convertArraytoObject.coordinates.split(",");
 
-  console.log(data);
-
-  const FilteredList = data.filter;
-  const Latitude = data.latitude;
-  const Longitude = data.longitude;
-
-  console.log(FilteredList);
+        setFilter(convertArraytoObject);
+        setLatitude(Number(coordinate[0]));
+        setLongitude(Number(coordinate[1]));
+      }
+    }
+    LoadData();
+  }, [LocationList, id]);
 
   const dispatch = useDispatch();
 
+  console.log(filter);
+
   let viewData;
 
-  // if (FilteredList) {
-  //    viewData = <NoData />;
-  //  }
+  if (filter === null) {
+    viewData = <NoData />;
+  }
 
-  if (locationData) {
+  if (filter) {
     viewData = (
       <>
-        <div key={FilteredList.id}>
-          <p>{FilteredList.address}</p>
+        <div key={filter.id}>
+          <p>{filter.address}</p>
           <div className="page_header">
-            <p>{FilteredList.coordinates} </p>
-            <a href={` https://maps.google.com/?q=${Latitude}, ${Longitude}  `}>
+            <p>{filter.coordinates} </p>
+            <a href={` https://maps.google.com/?q=${latitude}, ${longitude}`}>
               View on Google Maps{" "}
             </a>
           </div>
-          <p>{FilteredList.category}</p>
+          <p>{filter.category}</p>
         </div>
       </>
     );
@@ -60,12 +73,9 @@ const LocationInfo = () => {
           <Button color="secondary" onClick={() => setModal(true)}>
             Edit
           </Button>{" "}
-          {/* <Button
-            color="danger"
-            onClick={() => dispatch(remove(FilteredList.id))}
-          >
+          <Button color="danger" onClick={() => dispatch(remove(filter.id))}>
             Remove
-          </Button> */}
+          </Button>
         </div>
       </div>
 
@@ -73,12 +83,12 @@ const LocationInfo = () => {
 
       {modal && (
         <PopUp>
-          {/* <Edit
+          <Edit
             close={() => {
               setModal(false);
             }}
-            locationID={FilteredList.id}
-          /> */}
+            locationID={filter.id}
+          />
         </PopUp>
       )}
     </>
