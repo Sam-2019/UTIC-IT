@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
-import CategoryItem from "./categoryItem";
-import PopUp from "../Modal/Modal";
-import Form from "./Form";
 
+import ItemList from "../components/Item_List";
+import PopUp from "../Modal/Modal";
+import Add from "./Add";
+import NoData from "../components/NoData";
+
+import { Button } from "reactstrap";
 import { useSelector } from "react-redux";
-import { categoryData } from "../redux_utils/categorySlice";
+import { categoryData } from "../utils/redux/categorySlice";
 
 const Category = () => {
   const [modal, setModal] = useState(false);
-
+  let viewData;
   const CategoryList = useSelector(categoryData);
 
-  let viewData;
-
   if (CategoryList.length === 0) {
-    viewData = <> No data yet</>;
+    viewData = <NoData />;
   }
 
   if (CategoryList.length > 0) {
     viewData = (
       <>
-        {CategoryList.map((item, index) => (
-          <CategoryItem key={index} {...item} />
+        {CategoryList.map((data, index) => (
+          <ItemList key={index} data={data} path="category" />
         ))}
       </>
     );
@@ -31,7 +31,7 @@ const Category = () => {
   return (
     <>
       <div className="page_header">
-        <h2>Categories</h2>
+        <h1>Categories</h1>
 
         <Button color="success" onClick={() => setModal(true)}>
           Add
@@ -40,16 +40,16 @@ const Category = () => {
 
       {viewData}
 
-      {modal ? (
+      {modal && (
         <PopUp>
           <h5>Add Category</h5>
-          <Form
+          <Add
             close={() => {
               setModal(false);
             }}
           />
         </PopUp>
-      ) : null}
+      )}
     </>
   );
 };

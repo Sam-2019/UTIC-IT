@@ -1,51 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-import EditForm from "./EditForm";
-
+import Edit from "./Edit";
 import PopUp from "../Modal/Modal";
+import NoData from "../components/NoData";
 
 import { useSelector, useDispatch } from "react-redux";
-import { locationData, remove } from "../redux_utils/locationSlice";
+import { locationData, remove } from "../utils/redux/locationSlice";
 
 const LocationInfo = () => {
   let { id } = useParams();
-
+  let history = useHistory();
   const [modal, setModal] = useState(false);
 
+  const [filter, setFilter] = useState({});
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+
   const LocationList = useSelector(locationData);
-  const FilteredList = LocationList.filter((result) => result.name === id);
+  //console.log(LocationList)
 
-  var splitCoordinates = FilteredList[0].coordinates;
-  var newCoordinates = splitCoordinates.split(",");
+  useEffect(() => {
+    async function LoadData() {
+      if (LocationList) {
+        const FilterData = await LocationList.filter(
+          (result) => result.name === id
+        );
+        const convertArraytoObject = await Object.assign({}, FilterData[0]);
+        console.log(convertArraytoObject);
+        const coordinate = await convertArraytoObject.coordinates.split(",");
 
-  const Latitude = Number(newCoordinates[0]);
-  const Longitude = Number(newCoordinates[1]);
+        setFilter(convertArraytoObject);
+        setLatitude(Number(coordinate[0]));
+        setLongitude(Number(coordinate[1]));
+      }
+    }
+    LoadData();
+  }, [LocationList, id]);
 
   const dispatch = useDispatch();
 
-  let viewData;
-
-  if (FilteredList.length === 0) {
-    viewData = <> No data yet</>;
+  function removeItem() {
+    dispatch(remove(filter.id));
+    history.push("/location");
   }
 
-  if (FilteredList.length > 0) {
+  let viewData;
+
+  if (filter === null) {
+    viewData = <NoData />;
+  }
+
+  if (filter) {
     viewData = (
       <>
-        <div key={FilteredList[0].id}>
-          <p>{FilteredList[0].address}</p>
-
+        <div key={filter.id}>
+          <p>{filter.address}</p>
           <div className="page_header">
-            <p>{FilteredList[0].coordinates} </p>
-
-            <a href={` https://maps.google.com/?q=${Latitude}, ${Longitude}  `}>
+            <p>{filter.coordinates} </p>
+            <a href={`https://maps.google.com/?q=${latitude}, ${longitude}`}>
               View on Google Maps{" "}
             </a>
           </div>
-
-          <p>{FilteredList[0].category}</p>
+          {/* <p>{filter.category[0].name}</p> */}
         </div>
       </>
     );
@@ -60,10 +78,7 @@ const LocationInfo = () => {
           <Button color="secondary" onClick={() => setModal(true)}>
             Edit
           </Button>{" "}
-          <Button
-            color="danger"
-            onClick={() => dispatch(remove(FilteredList[0].id))}
-          >
+          <Button color="danger" onClick={removeItem}>
             Remove
           </Button>
         </div>
@@ -71,16 +86,16 @@ const LocationInfo = () => {
 
       {viewData}
 
-      {modal ? (
+      {modal && (
         <PopUp>
-          <EditForm
+          <Edit
             close={() => {
               setModal(false);
             }}
-            locationID={FilteredList[0].id}
+            locationID={filter.id}
           />
         </PopUp>
-      ) : null}
+      )}
     </>
   );
 };

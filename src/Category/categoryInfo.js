@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Button } from "reactstrap";
 import { useParams } from "react-router-dom";
 
-import EditForm from "./EditForm";
-import LocationItem from "../Location/locationItem";
+import ItemList from "../components/Item_List";
+import NoData from "../components/NoData";
 
 import PopUp from "../Modal/Modal";
+import Edit from "./Edit";
 
 import { useSelector, useDispatch } from "react-redux";
-import { locationData } from "../redux_utils/locationSlice";
-import {  remove } from "../redux_utils/categorySlice";
+import { locationData } from "../utils/redux/locationSlice";
+import { remove } from "../utils/redux/categorySlice";
 
 const CategoryInfo = () => {
   let { id } = useParams();
@@ -23,7 +24,7 @@ const CategoryInfo = () => {
   let viewData;
 
   if (FilteredList.length === 0) {
-    viewData = <> No data yet</>;
+    viewData = <NoData />;
   }
 
   if (FilteredList.length > 0) {
@@ -31,7 +32,7 @@ const CategoryInfo = () => {
       <>
         {FilteredList.map((data, index) => (
           <div key={index}>
-            <LocationItem {...data} />
+            <ItemList key={index} data={data} path="location" />
           </div>
         ))}
       </>
@@ -55,15 +56,16 @@ const CategoryInfo = () => {
 
       {viewData}
 
-      {modal ? (
+      {modal && (
         <PopUp>
-          <EditForm
+          <Edit
             close={() => {
               setModal(false);
             }}
+            categoryID={id}
           />
         </PopUp>
-      ) : null}
+      )}
     </>
   );
 };

@@ -2,38 +2,34 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const categorySlice = createSlice({
   name: "category",
-  initialState: [
-    {
-      id: "1",
-      name: "Bank",
-    },
-    {
-      id: "2",
-      name: "Hotel",
-    },
-    {
-      id: "3",
-      name: "Ministry",
-    },
-    {
-      id: "4",
-      name: "Health",
-    },
-  ],
+  initialState: [],
 
   reducers: {
     add: (state, action) => {
-      state.push(action.payload);
-      return state;
+      return state.concat(action.payload);
     },
     remove: (state, action) => {
       const newState = state.filter((result) => result.name !== action.payload);
       return newState;
     },
     edit: (state, action) => {
-      console.log(action.payload)
-    },
-  },
+      const { id, name } = action.payload;
+      const data = state.map((result) => {
+        if (result.id === id) {
+          return {
+            id,
+            name
+          };
+        } else {
+          return {
+            ...result
+          };
+        }
+      });
+
+      return data;
+    }
+  }
 });
 
 export const { add, edit, remove } = categorySlice.actions;

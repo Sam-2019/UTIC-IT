@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Button } from "reactstrap";
-import LocationItem from "./locationItem";
+
+import ItemList from "../components/Item_List";
 import PopUp from "../Modal/Modal";
-import Form from "./Form";
+import Add from "./Add";
+import NoData from "../components/NoData";
 
+import { Button } from "reactstrap";
 import { useSelector } from "react-redux";
-import { locationData } from "../redux_utils/locationSlice";
+import { locationData } from "../utils/redux/locationSlice";
 
-const Location = (props) => {
+const Location = () => {
   const [modal, setModal] = useState(false);
 
   const LocationList = useSelector(locationData);
@@ -15,14 +17,14 @@ const Location = (props) => {
   let viewData;
 
   if (LocationList.length === 0) {
-    viewData = <> No data yet</>;
+    viewData = <NoData />;
   }
 
   if (LocationList.length > 0) {
     viewData = (
       <>
-        {LocationList.map((item, index) => (
-          <LocationItem key={index} {...item} />
+        {LocationList.map((data, index) => (
+          <ItemList key={index} data={data} path="location" />
         ))}
       </>
     );
@@ -31,7 +33,7 @@ const Location = (props) => {
   return (
     <>
       <div className="page_header">
-        <h2>Locations</h2>
+        <h1>Locations</h1>
 
         <Button color="success" onClick={() => setModal(true)}>
           Add
@@ -40,16 +42,15 @@ const Location = (props) => {
 
       {viewData}
 
-      {modal ? (
+      {modal && (
         <PopUp>
-          <h5>Add Location</h5>
-          <Form
+          <Add
             close={() => {
               setModal(false);
             }}
           />
         </PopUp>
-      ) : null}
+      )}
     </>
   );
 };

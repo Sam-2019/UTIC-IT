@@ -2,18 +2,18 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
 
-const LocationItem = ({ id, name }) => {
+const ItemList = ({ data, path }) => {
   let history = useHistory();
 
   return (
     <div className="mb-3">
       <div className="list_item">
-        <p>{name}</p>
+        <p>{data.name}</p>
 
         <Button
           color="primary"
           onClick={() => {
-            history.push(`/location/${name}`);
+            history.push(`/${path}/${data.name}`);
           }}
         >
           View
@@ -23,4 +23,4 @@ const LocationItem = ({ id, name }) => {
   );
 };
 
-export default LocationItem;
+export default ItemList;
